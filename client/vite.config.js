@@ -7,7 +7,7 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'https://real-estate-delta-lac.vercel.app',
+        target:'http://localhost:3000',
         secure:false,
       },
     },
