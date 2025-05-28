@@ -6,8 +6,8 @@ import listingRouter from '../routes/listing_route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { join, dirname } from 'path';
-import serverless from 'serverless-http';
+import { join, dirname } from 'path'
+import serverless from 'serverless-http'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
