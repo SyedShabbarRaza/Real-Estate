@@ -75,7 +75,7 @@ try{
         )
         const {password:pass,...rest}=user._doc
         res.cookie('access_token',token,{httpOnly:true,}).status(200).json(rest)
-        console.log("print",req.body);
+        console.log("token",token);
     }else{
         const generatedPassword=Math.random().toString(36).slice(-8)+Math.random().toString(36).slice(-8);
         const hashedPassword=bcrypt.hashSync(generatedPassword,10);

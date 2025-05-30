@@ -17,6 +17,7 @@ function UpdateListing() {
   const {currentUser}=useSelector(state=>state.user)
   const [error,setError]=useState(false);
   const [loading,setLoading]=useState(false);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     imageUrls: [],
     name:'',
@@ -35,7 +36,7 @@ function UpdateListing() {
   useEffect(()=>{
     const fetchListing=async()=>{
         const listingId=params.listingId;
-        const res=await fetch(`/api/listing/get/${listingId}`);
+        const res=await fetch(`${API_BASE}/api/listing/get/${listingId}`);
         const data=await res.json();
         if(data.success===false){
             console.log('error');
@@ -132,7 +133,7 @@ setFormData({
       setLoading(true);
       setError(false);
 
-      const res=await fetch(`/api/listing/update/${params.listingId}`,{
+      const res=await fetch(`${API_BASE}/api/listing/update/${params.listingId}`,{
         method:'POST',
         headers:{
           'Content-Type':'application/json',

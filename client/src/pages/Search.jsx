@@ -7,6 +7,7 @@ function Search() {
   const [loading,setLoading]=useState(false);
   const [showMore,setShowMore]=useState(false);
   const [listings,setListings]=useState([]);
+      const API_BASE = import.meta.env.VITE_API_BASE_URL;
   console.log(listings);
 
   const [sidebardata, setSidebardata] = useState({
@@ -101,7 +102,7 @@ function Search() {
       setShowMore(false);
 
       const searchQuery = urlParams.toString();
-      const res = await fetch(`/api/listing/get?${searchQuery}`);
+      const res = await fetch(`${API_BASE}/api/listing/get?${searchQuery}`);
       const data = await res.json();
        if (data.length > 8) {
         setShowMore(true);
@@ -121,7 +122,7 @@ function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/listing/get?${searchQuery}`);
+    const res = await fetch(`${API_BASE}/api/listing/get?${searchQuery}`);
     const data = await res.json();
     if (data.length < 9) {
       setShowMore(false);

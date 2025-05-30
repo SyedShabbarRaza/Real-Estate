@@ -9,6 +9,7 @@ function SignIn() {
   
 const [formData,setFormData]=useState({});
 const dispatch=useDispatch();
+    const API_BASE = import.meta.env.VITE_API_BASE_URL;
 const {loading,error}=useSelector((state)=>state.user);
 const navigate=useNavigate();
   const handleChange=(e)=>{
@@ -24,7 +25,7 @@ const handleSubmit=async(e)=>{
   e.preventDefault();
 try{
   dispatch(signInStart());
-  const res=await fetch('/api/auth/signin',
+  const res=await fetch(`${API_BASE}/api/auth/signin`,
     {
       method:'POST',
       headers:{

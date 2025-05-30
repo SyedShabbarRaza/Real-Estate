@@ -7,6 +7,7 @@ function SignUp() {
 const [formData,setFormData]=useState({});
 const [error,setError]=useState(null);
 const [isLoading,setisLoading]=useState(false);
+    const API_BASE = import.meta.env.VITE_API_BASE_URL;
 const navigate=useNavigate();
   const handleChange=(e)=>{
     setFormData(
@@ -21,7 +22,7 @@ const handleSubmit=async(e)=>{
   e.preventDefault();
 try{
   setisLoading(true);
-  const res=await fetch('/api/auth/signup',
+  const res=await fetch(`${API_BASE}/api/auth/signup`,
     {
       method:'POST',
       headers:{

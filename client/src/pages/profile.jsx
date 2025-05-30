@@ -31,6 +31,7 @@ function Profile() {
   const dispatch = useDispatch();
   const [ShowListingError,setShowListingError]=useState(false);
   const [userListings,setUserListings]=useState([]);
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     if (file) {
@@ -72,7 +73,7 @@ function Profile() {
     console.log("formData:=>", formData);
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+      const res = await fetch(`${API_BASE}/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +99,7 @@ function Profile() {
   const handleDeleteUser = async (e) => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${API_BASE}/api/user/delete/${currentUser._id}`, {
         method: "POST",
       });
       const data = await res.json();
@@ -114,7 +115,7 @@ function Profile() {
   const handleSignOut = async (e) => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`/api/auth/signout`);
+      const res = await fetch(`${API_BASE}/api/auth/signout`);
       const data = await res.json();
       if (data.success === false) {
         dispatch(signOutUserFailure(data.message));
@@ -129,7 +130,7 @@ function Profile() {
   const handleShowListings=async()=>{
     try{
       setShowListingError(false);
-      const res=await fetch(`/api/user/listings/${currentUser._id}`);
+      const res=await fetch(`${API_BASE}/api/user/listings/${currentUser._id}`);
       const data=await res.json();
       console.log(data);
       if(data.success===false){
@@ -145,7 +146,7 @@ function Profile() {
   const handleListingDelete=async(e)=>{
     try{
       // setShowListingError(false);
-      const res=await fetch(`/api/listing/delete/${e}`,{
+      const res=await fetch(`${API_BASE}/api/listing/delete/${e}`,{
         method:'Delete',
       });
       const data=await res.json();

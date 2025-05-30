@@ -5,6 +5,7 @@ import { signInSuccess } from '../redux/user/userSlice.js';
 import { useNavigate } from 'react-router-dom';
 function OAuth() {
   const dispatch=useDispatch();
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
   const navigate=useNavigate();
     const handleGoogleClick=async ()=>{
         try{
@@ -14,7 +15,7 @@ function OAuth() {
             const result=await signInWithPopup(auth,provider);
             console.log("google ka response:",result);
 
-            const res=await fetch('/api/auth/google',{
+            const res=await fetch(`/api/auth/google`,{
               method:'POST',
               headers:{
                 'Content-Type':'application/json',
